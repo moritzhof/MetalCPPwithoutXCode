@@ -38,14 +38,14 @@ Code Explanation
 At the beginning of the main.cpp file, include the necessary headers and define macros required for the Metal-C++ API:
 
 ```cpp
-define NS_PRIVATE_IMPLEMENTATION
-define CA_PRIVATE_IMPLEMENTATION
-define MTL_PRIVATE_IMPLEMENTATION
+#define NS_PRIVATE_IMPLEMENTATION
+#define CA_PRIVATE_IMPLEMENTATION
+#define MTL_PRIVATE_IMPLEMENTATION
 
-include <Foundation/Foundation.hpp>
-include <Metal/Metal.hpp>
-include <iostream>
-include <vector>
+#include <Foundation/Foundation.hpp>
+#include <Metal/Metal.hpp>
+#include <iostream>
+#include <vector>
 ```
 
 *    The macros NS_PRIVATE_IMPLEMENTATION, CA_PRIVATE_IMPLEMENTATION, and MTL_PRIVATE_IMPLEMENTATION   are defined to include the private implementations of the Metal and Foundation classes.
@@ -111,7 +111,7 @@ This is where things get different since we are not in the X-Code environment. W
         device->release();
         return -1;
     }
-``
+```
 device->newLibrary loads the metal library we which to use which should inclode <kernel>.metal
 lib->newFunction will retrieve the kernel located into <kernel>.metal file. The functions names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
 
