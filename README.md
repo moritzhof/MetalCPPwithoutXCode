@@ -86,7 +86,7 @@ if (!commandQueue) {
 •    MTL::CreateSystemDefaultDevice() obtains the default Metal-compatible GPU.
 •    device->newCommandQueue() creates a command queue for submitting commands to the GPU.
 
-4. Load the Compute Function
+## 4. Load the Compute Function
 
 Load the Metal shader library and retrieve the compute function:
 This is where things get different since we are not in the X-Code environment. We cannot use the default library. We have to create our own <file>.metallib file. Steps on how to create this will follow:
@@ -115,7 +115,7 @@ This is where things get different since we are not in the X-Code environment. W
 device->newLibrary loads the metal library we which to use which should inclode <kernel>.metal
 lib->newFunction will retrieve the kernel located into <kernel>.metal file. The functions names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
 
-5. Set Up the Compute Pipeline
+## 5. Set Up the Compute Pipeline
 
 Initialize the input data and create buffers to store it on the GPU:
 '''cpp
@@ -131,7 +131,7 @@ Initialize the input data and create buffers to store it on the GPU:
     }
 '''
 
-5. Prepare Data and Buffers
+## 6. Prepare Data and Buffers
 
 Initialize the input data and create buffers to store it on the GPU:
   '''cpp  const uint32_t arrayLength = 1024;
@@ -192,7 +192,7 @@ Then you could transfer from how to device to host array:
     auto c = (float*)_C->contents();
 '''
 
-7. Encode Commands
+## 7. Encode Commands
 This ia rather lengthy step but this demonstrates how you encode the commands to be sent to the GPU.
 
 '''cpp
@@ -257,14 +257,14 @@ This ia rather lengthy step but this demonstrates how you encode the commands to
     •    The grid size and threadgroup size are defined to determine how the compute threads are dispatched.
     •    The compute kernel is dispatched with dispatchThreads.
 
-8. Execute the Command Buffer
+## 8. Execute the Command Buffer
 Commit the command buffer to execute the encoded commands on the GPU:
 '''cpp
 commandBuffer->commit();
 commandBuffer->waitUntilCompleted();
 '''
 
-9. Retrieve and Verify Results
+## 9. Retrieve and Verify Results
 
 Access the output data from the GPU and verify the results:
 '''cpp
@@ -289,7 +289,7 @@ Access the output data from the GPU and verify the results:
 • Cast the contents of cBuffer to a float pointer to access the results.
 • A loop checks each element to verify that the GPU computation matches the expected results.
 
-10. Clean Up Resources
+## 10. Clean Up Resources
 '''cpp
 computeEncoder->release();
 commandBuffer->release();
@@ -304,7 +304,7 @@ commandQueue->release();
 device->release();
 '''
 
-##Building and Running the Program
+## Building and Running the Program
 
 Since we are not in X-Code we have to build a .metallib file containing our kernel. For reference, it is explained here: https://developer.apple.com/documentation/metal/shader_libraries/metal_libraries/building_a_shader_library_by_precompiling_source_files .
 It is rather start forward. We have an operations.metel file containing the kernel add_vector. 
