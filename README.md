@@ -4,8 +4,7 @@
 This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal.
 
 ## Table of Contents
-
-        [Prerequisites](#prerequisites)
+    *    [Prerequisites](#prerequisites)
     *    [Project Structure](#project-structure)
     *    [Code Explanation](#Code-explanation)
     *    [1. Include Headers and Define Macros](#1.-include-headers-and-define-macros)
