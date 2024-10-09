@@ -3,33 +3,33 @@ Introduction to Metal-C++ with Vector Addition without X-Code
 
 This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. The code sets up a Metal compute pipeline to add two arrays of floats (a and b) and stores the result in a third array (c). This example processes 1024 elements using the add_vector kernel defined in operations.metal.
 
-Table of Contents
+##Table of Contents
 
-    •    Prerequisites
-    •    Project Structure
-    •    Code Explanation
-    •    1. Include Headers and Define Macros
-    •    2. Main Function Overview
-    •    3. Initialize Metal
-    •    4. Load the Compute Function
-    •    5. Set Up the Compute Pipeline
-    •    6. Prepare Data and Buffers
-    •    7. Encode Commands
-    •    8. Execute the Command Buffer
-    •    9. Retrieve and Verify Results
-    •    10. Clean Up Resources
-    •    Building and Running the Program
+    *    [Prerequisites]
+    *    [Project Structure]
+    *    [Code Explanation]
+    *    [1. Include Headers and Define Macros]
+    *    [2. Main Function Overview]
+    *    [3. Initialize Metal]
+    *    [4. Load the Compute Function]
+    *    [5. Set Up the Compute Pipeline]
+    *    [6. Prepare Data and Buffers]
+    *    [7. Encode Commands]
+    *    [8. Execute the Command Buffer]
+    *    [9. Retrieve and Verify Results]
+    *    [10. Clean Up Resources]
+    *    [Building and Running the Program]
 
-Prerequisites
+##Prerequisites
 
-    •    A Mac with an M3 Pro GPU (or any Metal-compatible GPU).
-    •    Xcode installed (latest version recommended).
-    •    Basic knowledge of C++ and GPU programming concepts.
+    *    A Mac with an M3 Pro GPU (or any Metal-compatible GPU).
+    *    Xcode installed (latest version recommended).
+    *    Basic knowledge of C++ and GPU programming concepts.
 
-Project Structure
+##Project Structure
 
-    •    main.cpp: The main C++ source file containing the Metal-C++ code.
-    •    operations.metal: The Metal shader file containing the add_vector compute kernel.
+    *    main.cpp: The main C++ source file containing the Metal-C++ code.
+    *    operations.metal: The Metal shader file containing the add_vector compute kernel.
 
 Code Explanation
 
@@ -37,7 +37,7 @@ Code Explanation
 
 At the beginning of the main.cpp file, include the necessary headers and define macros required for the Metal-C++ API:
 
-'''cpp
+```cpp
 define NS_PRIVATE_IMPLEMENTATION
 define CA_PRIVATE_IMPLEMENTATION
 define MTL_PRIVATE_IMPLEMENTATION
@@ -46,15 +46,15 @@ include <Foundation/Foundation.hpp>
 include <Metal/Metal.hpp>
 include <iostream>
 include <vector>
-'''
+```
 
-•    The macros NS_PRIVATE_IMPLEMENTATION, CA_PRIVATE_IMPLEMENTATION, and MTL_PRIVATE_IMPLEMENTATION   are defined to include the private implementations of the Metal and Foundation classes.
-•    Headers for Foundation, Metal, and standard C++ libraries are included.
+*    The macros NS_PRIVATE_IMPLEMENTATION, CA_PRIVATE_IMPLEMENTATION, and MTL_PRIVATE_IMPLEMENTATION   are defined to include the private implementations of the Metal and Foundation classes.
+*    Headers for Foundation, Metal, and standard C++ libraries are included.
 
-2. Main Function Overview
+##2. Main Function Overview
 
 The main function demonstartes the entire process in order to run the GPU on macOS:
-'''cpp
+```cpp
 int main() {
     // Initialization and setup code
     // Data preparation
@@ -63,9 +63,9 @@ int main() {
     // Resource cleanup
     return 0;
 }
-'''
+```
 
-3. Initialize Metal
+## 3. Initialize Metal
 
 Start by initializing the Metal device and creating a command queue:
 
