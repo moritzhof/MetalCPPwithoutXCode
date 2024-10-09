@@ -7,7 +7,7 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
 * [Prerequisites](#prerequisites)
 * [Project Structure](#project-structure)
 * [Code Explanation](#Code-explanation)
-* [1. Include Headers and Define Macros](#1-include-headers-and-define-macros)
+* [1. Include Headers and Define Macros](#1.-include-headers-and-define-macros)
 * [2. Main Function Overview](#2-main-function-overview)
 * [3. Initialize Metal](#initialize-metal)
 * [4. Load the Compute Function](#load-the-compute-function)
@@ -32,7 +32,7 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
 
 Code Explanation
 
-1. Include Headers and Define Macros
+## 1. Include Headers and Define Macros
 
 At the beginning of the main.cpp file, include the necessary headers and define macros required for the Metal-C++ API:
 
