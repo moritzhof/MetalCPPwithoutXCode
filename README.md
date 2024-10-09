@@ -112,9 +112,9 @@ This is where things get different since we are not in the X-Code environment. W
         return -1;
     }
 ```
-* device->newLibrary loads the metal library we which to use which should inclode <kernel>.metal
+* device->newLibrary loads the metal library, which we create later on from <kernel>.metal. In this case we will create operations.metallib from operations.metal.
 * lib->newFunction will retrieve the kernel located into <kernel>.metal file. 
-* The functions names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
+* The functiond names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
 * You will also have to update the Path in filePath to where your files are held. 
 
 ## 5. Set Up the Compute Pipeline
@@ -166,7 +166,7 @@ Initialize the input data and create buffers to store it on the GPU:
 *    Metal buffers aBuffer, bBuffer, and cBuffer are created to store the data on the GPU.
 *    Data is copied into the GPU buffers, and Metal is notified of the changes.
 
-This can also be done in a a different way: You could generate random numbers and them directly to the device buffer. Here is how you could do it that way: 
+This can also be done in a a different ways. One way is that you could generate random numbers and then directly to the device buffer. Here is how you could do it that way: 
 
 ```cpp
     MTL::Buffer* _A = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
