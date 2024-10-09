@@ -19,7 +19,6 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
 * [10. Clean Up Resources](#clean-up-resources)
 * [Building and Running the Program](#bulding-and-running-the-program)
 
-<a name="prerequisites"></a>
 ## Prerequisites
 
     -    A Mac with an M3 Pro GPU (or any Metal-compatible GPU).
@@ -167,9 +166,9 @@ Initialize the input data and create buffers to store it on the GPU:
 This can also be done in a a different way: You could generate random numbers and them directly to the device buffer. Here is how you could do it that way: 
 
 ```cpp
-        MTL::Buffer* _A = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
-        MTL::Buffer* _B = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
-        MTL::Buffer* _C = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
+    MTL::Buffer* _A = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
+    MTL::Buffer* _B = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
+    MTL::Buffer* _C = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
     
     random_number_generator(_A);
     random_number_generator(_B); 
