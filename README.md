@@ -5,7 +5,7 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
 
 ## Table of Contents
 
-    *    [Prerequisites](#prerequisites)
+        [Prerequisites](#prerequisites)
     *    [Project Structure](#project-structure)
     *    [Code Explanation](#Code-explanation)
     *    [1. Include Headers and Define Macros](#1.-include-headers-and-define-macros)
