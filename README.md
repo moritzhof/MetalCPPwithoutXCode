@@ -4,20 +4,20 @@
 This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal.
 
 ## Table of Contents
-    * [Prerequisites](#prerequisites)
-    * [Project Structure](#project-structure)
-    * [Code Explanation](#Code-explanation)
-    * [Include Headers and Define Macros](#1.-include-headers-and-define-macros)
-    * [Main Function Overview](#main-function-overview)
-    * [Initialize Metal](#initialize-metal)
-    * [Load the Compute Function](#load-the-compute-function)
-    * [Set Up the Compute Pipeline](#set-up-the-compute-pipeline)
-    * [Prepare Data and Buffers](#prepare-data-and-buffers)
-    * [Encode Commands](#encode-commands)
-    * [Execute the Command Buffer](#execute-the-command-buffer)
-    * [Retrieve and Verify Results](#retrieve-and-verify-results)
-    * [Clean Up Resources](#clean-up-resources)
-    * [Building and Running the Program](#bulding-and-running-the-program)
+* [Prerequisites](#prerequisites)
+* [Project Structure](#project-structure)
+* [Code Explanation](#Code-explanation)
+* [Include Headers and Define Macros](#1.-include-headers-and-define-macros)
+* [Main Function Overview](#main-function-overview)
+* [Initialize Metal](#initialize-metal)
+* [Load the Compute Function](#load-the-compute-function)
+* [Set Up the Compute Pipeline](#set-up-the-compute-pipeline)
+* [Prepare Data and Buffers](#prepare-data-and-buffers)
+* [Encode Commands](#encode-commands)
+* [Execute the Command Buffer](#execute-the-command-buffer)
+* [Retrieve and Verify Results](#retrieve-and-verify-results)
+* [Clean Up Resources](#clean-up-resources)
+* [Building and Running the Program](#bulding-and-running-the-program)
 
 <a name="prerequisites"></a>
 ## Prerequisites
