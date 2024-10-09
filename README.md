@@ -5,8 +5,8 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
 
 ## Table of Contents
 
-    *    [Prerequisites](#Prerequisites)
-    *    [Project Structure](#Project Structure)
+    *    [Prerequisites](#prerequisites)
+    *    [Project Structure](#project-structure)
     *    [Code Explanation](#Code-explanation)
     *    [1. Include Headers and Define Macros](#1.-include-headers-and-define-macros)
     *    [2. Main Function Overview](#main-function-overview)
@@ -20,6 +20,7 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
     *    [10. Clean Up Resources](#clean-up-resources)
     *    [Building and Running the Program](#bulding-and-running-the-program)
 
+<a name="prerequisites"></a>
 ## Prerequisites
 
     *    A Mac with an M3 Pro GPU (or any Metal-compatible GPU).
