@@ -1,7 +1,7 @@
 # Introduction to Metal-C++ with Vector Addition without X-Code 
 
 
- This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. One could think about this as a way to use Metel-C++ as a way to do scientific computing. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal. I avoid the use of auto so that readers can learn as much as possible from this tutorial, however I do not go into alor of detail of what ever line of code means. A lot more code in provided then necessary in order to have a working example but I wanted to demonstrate as much as possible so that you can get started on setting up your own project. 
+ This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. One could think about this as a way to use Metel-C++ to do scientific computing. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal. I avoid the use of auto so that readers can learn as much as possible from this tutorial, however I do not go into alor of detail of what ever line of code means. A lot more code in provided then necessary in order to have a working example but I wanted to demonstrate as much as possible so that you can get started on setting up your own project. 
 
 ## Table of Contents
 * [Prerequisites](#prerequisites)
@@ -115,6 +115,7 @@ This is where things get different since we are not in the X-Code environment. W
 * device->newLibrary loads the metal library we which to use which should inclode <kernel>.metal
 * lib->newFunction will retrieve the kernel located into <kernel>.metal file. 
 * The functions names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
+* You will also have to update the Path in filePath to where your files are held. 
 
 ## 5. Set Up the Compute Pipeline
 
@@ -308,8 +309,8 @@ device->release();
 ## Building and Running the Program
 
 Since we are not in X-Code we have to build a .metallib file containing our kernel. For reference, it is explained here: https://developer.apple.com/documentation/metal/shader_libraries/metal_libraries/building_a_shader_library_by_precompiling_source_files .
-It is rather start forward. We have an operations.metel file containing the kernel add_vector. 
-We first have to compiler into a .ir file: 
+It is rather straightforward, though. We have an operations.metel file containing the kernel add_vector. 
+We first have to compiler the operations.metal into a operations.ir file: In the terminal we execute the following command: 
 
 ```cpp
 xcrun -sdk macosx metal -o operations.ir -c operations.metal
@@ -320,11 +321,10 @@ and then from that .ir file we can create the .metallib, as required:
 ```cpp
 xcrun -sdk macosx metallib -o operations.metallib operations.ir
 ```
-All this files could be in a folder we you have your main.cpp. 
-The following files should now be in your folder: 
+All these files should be in a folder where we you have your main.cpp. After preforming that above commands, we should have the files: 
  main.cpp            metal-cpp           operations.ir       operations.metal    operations.metallib
  
- Note: the metal-cpp is a folder containing the Metal-C++ API file. it can be downloaded here only with a tutorial on how to use it with X-Code: https://developer.apple.com/metal/cpp/. you may also look at this code https://github.com/moritzhof/metal-cpp-examples that is also a vector add example using metal-cpp. It is directly translated from Objective-C++ code from https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu?language=objc
+ Note: the metal-cpp is a folder containing the Metal-C++ API file. it can be downloaded here only with a tutorial on how to use it with X-Code: https://developer.apple.com/metal/cpp/. For completeness, I have included the metal-cpp folder in this repository. You may also look at this repository https://github.com/moritzhof/metal-cpp-examples that is also a vector add example using metal-cpp but in X-Code.  However, it is technically not the same example. It is directly translated from Objective-C++ code found from: https://developer.apple.com/documentation/metal/performing_calculations_on_a_gpu?language=objc
 
  
  
