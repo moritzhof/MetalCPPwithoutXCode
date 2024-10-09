@@ -176,7 +176,7 @@ This can also be done in a a different way: You could generate random numbers an
 
 where random_number:generator is given by: 
 
-``cpp
+```cpp
 void random_number_generator(MTL::Buffer *buffer){
     float* data_ptr = (float*)buffer->contents();
         for (unsigned long index = 0; index < vector_length; ++index){
@@ -308,11 +308,13 @@ device->release();
 Since we are not in X-Code we have to build a .metallib file containing our kernel. For reference, it is explained here: https://developer.apple.com/documentation/metal/shader_libraries/metal_libraries/building_a_shader_library_by_precompiling_source_files .
 It is rather start forward. We have an operations.metel file containing the kernel add_vector. 
 We first have to compiler into a .ir file: 
+
 ```cpp
 xcrun -sdk macosx metal -o operations.ir -c operations.metal
 ```
 
 and then from that .ir file we can create the .metallib, as required: 
+
 ```cpp
 xcrun -sdk macosx metallib -o operations.metallib operations.ir
 ```
@@ -326,13 +328,14 @@ The following files should now be in your folder:
  
  Finally you can compile the code: 
  
-'''cpp
+```cpp
 clang++ -I/Path/to/metal-cpp  main.cpp -o main -std=c++20 -framework Foundation -framework Metal
-'''
+```
 
 If everything goes well, you should get an executable main
-'''cpp
+
+```cpp
 ./main
-'''
+```
 
 Hopefully you found this tutorial insightfull and learned something new :) 
