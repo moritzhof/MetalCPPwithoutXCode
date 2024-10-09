@@ -1,22 +1,22 @@
 # Introduction to Metal-C++ with Vector Addition without X-Code 
 
 
-This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal.
+ This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. One could think about this as a way to use Metel-C++ as a way to do scientific computing. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal. I avoid the use of auto so that readers can learn as much as possible from this tutorial, however I do not go into alor of detail of what ever line of code means. A lot more code in provided then necessary in order to have a working example but I wanted to demonstrate as much as possible so that you can get started on setting up your own project. 
 
 ## Table of Contents
 * [Prerequisites](#prerequisites)
 * [Project Structure](#project-structure)
 * [Code Explanation](#Code-explanation)
-* [1. Include Headers and Define Macros](#1.-include-headers-and-define-macros)
+* [1. Include Headers and Define Macros](#1-include-headers-and-define-macros)
 * [2. Main Function Overview](#2-main-function-overview)
-* [3. Initialize Metal](#initialize-metal)
-* [4. Load the Compute Function](#load-the-compute-function)
-* [5. Set Up the Compute Pipeline](#set-up-the-compute-pipeline)
-* [6. Prepare Data and Buffers](#prepare-data-and-buffers)
-* [7. Encode Commands](#encode-commands)
-* [8. Execute the Command Buffer](#execute-the-command-buffer)
-* [9. Retrieve and Verify Results](#retrieve-and-verify-results)
-* [10. Clean Up Resources](#clean-up-resources)
+* [3. Initialize Metal](#3-initialize-metal)
+* [4. Load the Compute Function](#4-load-the-compute-function)
+* [5. Set Up the Compute Pipeline](#5-set-up-the-compute-pipeline)
+* [6. Prepare Data and Buffers](#6-prepare-data-and-buffers)
+* [7. Encode Commands](#7-encode-commands)
+* [8. Execute the Command Buffer](#8-execute-the-command-buffer)
+* [9. Retrieve and Verify Results](#9-retrieve-and-verify-results)
+* [10. Clean Up Resources](#9-clean-up-resources)
 * [Building and Running the Program](#bulding-and-running-the-program)
 
 ## Prerequisites
@@ -30,7 +30,7 @@ This project demonstrates how to use the Metal-C++ API to perform vector additio
     *    main.cpp: The main C++ source file containing the Metal-C++ code.
     *    operations.metal: The Metal shader file containing the add_vector compute kernel.
 
-Code Explanation
+# Code Explanation
 
 ## 1. Include Headers and Define Macros
 
@@ -48,6 +48,7 @@ At the beginning of the main.cpp file, include the necessary headers and define 
 ```
 
 *    The macros NS_PRIVATE_IMPLEMENTATION, CA_PRIVATE_IMPLEMENTATION, and MTL_PRIVATE_IMPLEMENTATION   are defined to include the private implementations of the Metal and Foundation classes.
+
 *    Headers for Foundation, Metal, and standard C++ libraries are included.
 
 ## 2. Main Function Overview
@@ -88,7 +89,7 @@ if (!commandQueue) {
 ## 4. Load the Compute Function
 
 Load the Metal shader library and retrieve the compute function:
-This is where things get different since we are not in the X-Code environment. We cannot use the default library. We have to create our own <file>.metallib file. Steps on how to create this will follow:
+This is where things get different since we are not in the X-Code environment. We cannot use the default library. We have to create our own <file>.metallib file. Steps on how to create this will follow in the Building and Running Section:
 
 ```cpp
     NS::Error* error = nullptr;
@@ -111,8 +112,9 @@ This is where things get different since we are not in the X-Code environment. W
         return -1;
     }
 ```
-device->newLibrary loads the metal library we which to use which should inclode <kernel>.metal
-lib->newFunction will retrieve the kernel located into <kernel>.metal file. The functions names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
+* device->newLibrary loads the metal library we which to use which should inclode <kernel>.metal
+* lib->newFunction will retrieve the kernel located into <kernel>.metal file. 
+* The functions names have to match. In this tutorial the operations.metal contains the kernel 'add_vector'. 
 
 ## 5. Set Up the Compute Pipeline
 
@@ -158,10 +160,10 @@ Initialize the input data and create buffers to store it on the GPU:
     bBuffer->didModifyRange(NS::Range::Make(0, bBuffer->length()));
 ```
 
-•    Define the length of the arrays and compute the buffer size.
-•    Input vectors a and b are initialized with sample data.
-•    Metal buffers aBuffer, bBuffer, and cBuffer are created to store the data on the GPU.
-•    Data is copied into the GPU buffers, and Metal is notified of the changes.
+*    Define the length of the arrays and compute the buffer size.
+*    Input vectors a and b are initialized with sample data.
+*    Metal buffers aBuffer, bBuffer, and cBuffer are created to store the data on the GPU.
+*    Data is copied into the GPU buffers, and Metal is notified of the changes.
 
 This can also be done in a a different way: You could generate random numbers and them directly to the device buffer. Here is how you could do it that way: 
 
