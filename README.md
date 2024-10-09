@@ -1,14 +1,14 @@
-Introduction to Metal-C++ with Vector Addition without X-Code 
+# Introduction to Metal-C++ with Vector Addition without X-Code 
 
 
-This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. The code sets up a Metal compute pipeline to add two arrays of floats (a and b) and stores the result in a third array (c). This example processes 1024 elements using the add_vector kernel defined in operations.metal.
+This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal.
 
 ## Table of Contents
 
     *    [Prerequisites](#prerequisites)
     *    [Project Structure](#project-structure)
     *    [Code Explanation](#Code-explanation)
-    *    [1. Include Headers and Define Macros](#include-headers-and-define-macros)
+    *    [1. Include Headers and Define Macros](#1.-include-headers-and-define-macros)
     *    [2. Main Function Overview](#main-function-overview)
     *    [3. Initialize Metal](#initialize-metal)
     *    [4. Load the Compute Function](#load-the-compute-function)
