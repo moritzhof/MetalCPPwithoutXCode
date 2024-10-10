@@ -27,7 +27,7 @@ int main() {
     // extra steps here are necessary since we are not in X-Code. We have to use
     // xcrun -sdk to create a .metallib file. see tutorial for instructions
     NS::Error* error = nullptr;
-    NS::String* filePath = NS::String::string("/Path/to/metalCpp/Project/<kernel>.metallib", NS::UTF8StringEncoding);
+    NS::String* filePath = NS::String::string("/Users/moritzhof/Documents/Programming/MetalCpp/VectorOperations/operations.metallib", NS::UTF8StringEncoding);
     
     auto lib = device->newLibrary(filePath, &error);
     if(!lib){
@@ -36,10 +36,10 @@ int main() {
     }
 
     // Retrieve the compute function from the library
-    NS::String* functionName = NS::String::string("add_vector", NS::UTF8StringEncoding);
+    NS::String* functionName = NS::String::string("sum_vectors", NS::UTF8StringEncoding);
     MTL::Function* computeFunction = lib->newFunction(functionName);
     if (!computeFunction) {
-        std::cerr << "Failed to find the compute function 'add_vector'." << std::endl;
+        std::cerr << "Failed to find the compute function 'sum_vectors'." << std::endl;
         lib->release();
         commandQueue->release();
         device->release();
