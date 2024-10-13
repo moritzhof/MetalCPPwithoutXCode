@@ -1,7 +1,7 @@
-# Introduction to Metal-C++ with Vector Addition without X-Code 
+# Introduction to Metal-C++ with Vector Addition outside X-Code IDE
 
 
- This project demonstrates how to use the Metal-C++ API to perform vector addition on the GPU using a compute kernel. One could think about this as a way to use Metel-C++ to do scientific computing. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal. I avoid the use of auto so that readers can learn as much as possible from this tutorial, however I do not go into alor of detail of what ever line of code means. A lot more code in provided then necessary in order to have a working example but I wanted to demonstrate as much as possible so that you can get started on setting up your own project. 
+ This project demonstrates how to use the Metal-C++ API to perform vector addition on the M-generation GPUs (but this also worked on Intel CPU and AMD GPU Macs) using a compute kernel. One could think about this as a way to use Metel-C++ to do scientific computing. The code sets up a Metal compute pipeline to add two arrays of floats (A and B) and stores the result in a third array (C). This example processes 1024 elements using the add_vector kernel defined in operations.metal. I avoid the use of auto so that readers can learn as much as possible from this tutorial, however I do not go into alor of detail of what ever line of code means. A lot more code in provided then necessary in order to have a working example but I wanted to demonstrate as much as possible so that you can get started on setting up your own project. 
 
 ## Table of Contents
 * [Prerequisites](#prerequisites)
@@ -166,7 +166,7 @@ Initialize the input data and create buffers to store it on the GPU:
 *    Metal buffers aBuffer, bBuffer, and cBuffer are created to store the data on the GPU.
 *    Data is copied into the GPU buffers, and Metal is notified of the changes.
 
-This can also be done in a a different ways. One way is that you could generate random numbers and then directly to the device buffer. Here is how you could do it that way: 
+This can also be done in different ways. One way is that you could generate random numbers directly to the device buffer. Here is how you could do it that way: 
 
 ```cpp
     MTL::Buffer* _A = _device->newBuffer(buffer_size, MTL::ResourceStorageModeShared);
@@ -308,7 +308,7 @@ device->release();
 
 ## Building and Running the Program
 
-Since we are not in X-Code we have to build a .metallib file containing our kernel. For reference, it is explained here: https://developer.apple.com/documentation/metal/shader_libraries/metal_libraries/building_a_shader_library_by_precompiling_source_files .
+Since we are not in X-Code IDE, we have to build a .metallib file containing our kernel. For reference, it is explained here: https://developer.apple.com/documentation/metal/shader_libraries/metal_libraries/building_a_shader_library_by_precompiling_source_files .
 It is rather straightforward, though. We have an operations.metel file containing the kernel add_vector. 
 We first have to compiler the operations.metal into a operations.ir file: In the terminal we execute the following command: 
 
