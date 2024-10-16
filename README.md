@@ -71,17 +71,10 @@ Start by initializing the Metal device and creating a command queue:
 
 ```cpp
 MTL::Device* device = MTL::CreateSystemDefaultDevice();
-if (!device) {
-    std::cerr << "Failed to find a compatible Metal device." << std::endl;
-    return -1;
-}
+
 
 MTL::CommandQueue* commandQueue = device->newCommandQueue();
-if (!commandQueue) {
-    std::cerr << "Failed to create a command queue." << std::endl;
-    device->release();
-    return -1;
-}
+
 ```
 •    MTL::CreateSystemDefaultDevice() obtains the default Metal-compatible GPU.
 •    device->newCommandQueue() creates a command queue for submitting commands to the GPU.
@@ -96,20 +89,10 @@ This is where things get different since we are not in the X-Code environment. W
     NS::String* filePath = NS::String::string("/Path/to/metalCpp/Project/<kernel>.metallib", NS::UTF8StringEncoding);
     
     auto lib = device->newLibrary(filePath, &error);
-    if(!lib){
-        std::cerr << "Failed to Library\n";
-        std::exit(-1);
-    }
-    
-    
+ 
     NS::String* functionName = NS::String::string("add_vector", NS::UTF8StringEncoding);
     MTL::Function* computeFunction = lib->newFunction(functionName);
-    if (!computeFunction) {
-        std::cerr << "Failed to find the compute function 'add_vector'." << std::endl;
-        lib->release();
-        commandQueue->release();
-        device->release();
-        return -1;
+
     }
 ```
 * device->newLibrary loads the metal library, which we create later on from <kernel>.metal. In this case we will create operations.metallib from operations.metal.
@@ -122,15 +105,6 @@ This is where things get different since we are not in the X-Code environment. W
 Initialize the input data and create buffers to store it on the GPU:
 ```cpp
     MTL::ComputePipelineState* computePipelineState = device->newComputePipelineState(computeFunction, &error);
-    if (!computePipelineState) {
-        std::cerr << "Failed to create compute pipeline state: "
-                  << (error ? error->localizedDescription()->utf8String() : "Unknown error") << std::endl;
-        computeFunction->release();
-        lib->release();
-        commandQueue->release();
-        device->release();
-        return -1;
-    }
 ```
 
 ## 6. Prepare Data and Buffers
@@ -199,36 +173,11 @@ This ia rather lengthy step but this demonstrates how you encode the commands to
 
 ```cpp
     MTL::CommandBuffer* commandBuffer = commandQueue->commandBuffer();
-    if (!commandBuffer) {
-        std::cerr << "Failed to create a command buffer." << std::endl;
-        // Release resources
-        aBuffer->release();
-        bBuffer->release();
-        cBuffer->release();
-        computePipelineState->release();
-        computeFunction->release();
-        lib->release();
-        commandQueue->release();
-        device->release();
-        return -1;
-    }
+
 
     // Create a compute command encoder
     MTL::ComputeCommandEncoder* computeEncoder = commandBuffer->computeCommandEncoder();
-    if (!computeEncoder) {
-        std::cerr << "Failed to create a compute command encoder." << std::endl;
-        // Release resources
-        commandBuffer->release();
-        aBuffer->release();
-        bBuffer->release();
-        cBuffer->release();
-        computePipelineState->release();
-        computeFunction->release();
-        lib->release();
-        commandQueue->release();
-        device->release();
-        return -1;
-    }
+
 
     // Set the compute pipeline state and buffers
     computeEncoder->setComputePipelineState(computePipelineState);
@@ -241,9 +190,7 @@ This ia rather lengthy step but this demonstrates how you encode the commands to
     
     // Ensure the threadgroup size does not exceed the maximum threads per threadgroup
     NS::UInteger threadgroup_Size = computePipelineState->maxTotalThreadsPerThreadgroup();
-    if (threadgroup_Size> arrayLength) {
-        threadgroup_Size = arrayLength;
-    }
+
     
     
     MTL::Size threadgroupSize = MTL::Size(threadgroup_Size, 1, 1); // Adjust based on the device's capabilities
