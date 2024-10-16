@@ -187,7 +187,7 @@ void random_number_generator(MTL::Buffer *buffer){
         }
 }
 ```
-Then you could transfer from how to device to host array: 
+Then you could transfer from device to host array: 
 ```cpp
     auto a = (float*)_A->contents();
     auto b = (float*)_B->contents();
@@ -292,7 +292,7 @@ Access the output data from the GPU and verify the results:
 • A loop checks each element to verify that the GPU computation matches the expected results.
 
 ## 10. Clean Up Resources
-'''cpp
+```cpp
 computeEncoder->release();
 commandBuffer->release();
 aBuffer->release();
@@ -304,7 +304,7 @@ defaultLibrary->release();
 functionName->release();
 commandQueue->release();
 device->release();
-'''
+```
 
 ## Building and Running the Program
 
