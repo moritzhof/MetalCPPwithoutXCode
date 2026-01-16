@@ -27,7 +27,7 @@ int main() {
     // extra steps here are necessary since we are not in X-Code. We have to use
     // xcrun -sdk to create a .metallib file. see tutorial for instructions
     NS::Error* error = nullptr;
-    NS::String* filePath = NS::String::string("/Path/to/metalCpp/Project/<kernel>.metallib", NS::UTF8StringEncoding);
+    NS::String* filePath = NS::String::string("operations.metallib", NS::UTF8StringEncoding);
     
     auto lib = device->newLibrary(filePath, &error);
     if(!lib){
